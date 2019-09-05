@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      @font-face {
+        /* 思源宋体 */
+        font-family: 'SiYuan-ST';
+        src: url('./font/思源宋体_downcc/思源宋体_downcc/SourceHanSerifCN-Regular.otf');
+      }
+
+      @font-face {
+        /* 思源黑体 */
+        font-family: 'SiYuan-HT';
+        src: url('./font/14款思源黑体打包下载/SourceHanSansCN-思源黑体 简体中文版/SourceHanSansCN-Regular.otf');
+      }
+
+      body {
+        background: #222;
+        color: #fff;
+        position: relative;
+        text-align: center;
+        font-size: 1rem;
+        font-family: sans-serif;
+        padding-bottom: 3em;
+      }
+      .page-wrap {
+        display: inline-block;
+        margin: 2em auto;
+      }
+      .controls {
+      }
+      .controls__input {
+        display: block;
+        margin: 0 auto;
+        background: none;
+        border: none;
+        font-size: 1em;
+        padding-bottom: 0.5em;
+        border-bottom: 2px solid #ccc;
+        text-align: center;
+        outline: none;
+        color: #fff;
+      }
+      .controls__btn {
+        background: dodgerblue;
+        color: #fff;
+        border: none;
+        font-size: 1em;
+      }
+      .controls__label {
+        display: block;
+        font-size: 0.8em;
+        padding-top: 0.3em;
+        margin-bottom: 2em;
+      }
+      canvas {
+        background-color: #eee;
+        /* opacity: 0; */
+        transition: opacity 0.3s;
+      }
+      canvas.show {
+        opacity: 1;
+      }
+      .canvas-wrap {
+        margin-top: 50px;
+        position: relative;
+      }
+      #canvasID {
+        z-index: 9999;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <!-- <h1>Overlay text on canvas image and save as base64</h1> -->
+    <div class="page-wrap">
+      <div class="controls">
+        <input
+          class="controls__input"
+          type="file"
+          id="imageLoader"
+          name="imageLoader"
+        />
+        <label class="controls__label" for="name"
+          >First, choose an image.</label
+        >
+
+        <input
+          class="controls__input"
+          id="name"
+          type="text"
+          value=""
+          placeholder="渠道/分公司名称"
+        />
+        <br />
+        <input
+          class="controls__input"
+          id="username"
+          type="text"
+          value=""
+          placeholder="名称"
+        />
+        <br />
+        <input
+          class="controls__input"
+          id="price"
+          type="text"
+          value=""
+          placeholder="放款金额"
+        />
+        <br />
+        <input
+          class="controls__input"
+          id="thanks"
+          type="text"
+          value=""
+          placeholder="感谢语"
+        />
+        <br />
+        <input
+          class="controls__input"
+          id="date"
+          type="text"
+          value=""
+          placeholder="放款日期"
+        />
+        <br />
+        <button class="btn" id="btn">一键生成海报</button>
+        <label class="controls__label" for="name">Overlay Text</label>
+      </div>
+      <div id="canvas-wrap">
+        <canvas
+          style="display:block"
+          id="imageCanvas"
+          width="750px"
+          height="1334px"
+        >
+          <canvas id="canvasID"></canvas>
+        </canvas>
+      </div>
+    </div>
+    <script>
+    //   var text_title = 'Overlay text';
+      var imageLoader = document.getElementById('imageLoader');
+      imageLoader.addEventListener('change', handleImage, false);
+      var canvas = document.getElementById('imageCanvas');
+      var ctx = canvas.getContext('2d');
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+
+      window.addEventListener('load', DrawPlaceholder);
+
+      function DrawPlaceholder() {
+        img.onload = function() {
+          DrawOverlay(img);
+          DrawText();
+          DynamicText(img);
+          document.getElementById('btn').click();
+        };
+        img.src = './news.jpg';
+      }
+      function DrawOverlay(img) {
+        ctx.drawImage(img, 0, 0);
+        ctx.fillStyle = 'rgba(30, 144, 255, 0)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+      function DrawText() {
+        ctx.fillStyle = '#fefd8b';
+        ctx.textBaseline = 'middle';
+        ctx.font = "bold 48px 'SiYuan-ST'";
+        // ctx.fillText(text_title, 50, 50);
+        ctx.textAlign="start";
+      }
+      function DrawText2() {
+        ctx.fillStyle = '#fefd8b';
+        ctx.textBaseline = 'middle';
+        ctx.font = "bold 90px 'SiYuan-ST'";
+        // ctx.fillText(text_title, 50, 50);
+        ctx.textAlign="center";
+      }
+      function DrawText3() {
+        var grd=ctx.createLinearGradient(0,0,0,canvas.height);
+        grd.addColorStop(0,"#faf58a");
+        grd.addColorStop(0.6,"#faf58a");
+        grd.addColorStop(1,"#c4010f");
+        ctx.fillStyle = grd;
+        ctx.textBaseline = 'middle';
+        ctx.font = "bold 140px 'SiYuan-HT'";
+        // ctx.fillText(text_title, 50, 50);
+        ctx.textAlign="center";
+      }
+      function DrawText4() {
+        ctx.fillStyle = '#ffc867';
+        ctx.textBaseline = 'middle';
+        ctx.font = "28px 'SiYuan-HT'";
+        // ctx.fillText(text_title, 50, 50);
+        ctx.textAlign="center";
+      }
+      function DrawText5() {
+        ctx.fillStyle = '#f4f08d';
+        ctx.textBaseline = 'middle';
+        ctx.font = "24px 'SiYuan-ST'";
+        // ctx.fillText(text_title, 50, 50);
+        ctx.textAlign="center";
+      }
+      function DynamicText(img) {
+        document.getElementById('btn').addEventListener('click', function() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          DrawOverlay(img);
+          DrawText();
+          ctx.fillText(document.getElementById('name').value, 320, 560);
+          ctx.save();
+          DrawText2();
+          ctx.fillText(document.getElementById('username').value, 375, 670);
+          ctx.save();
+          DrawText3();
+          ctx.fillText(document.getElementById('price').value, 375, 900);
+          ctx.save();
+          DrawText4();
+          ctx.fillText(document.getElementById('thanks').value, 375, 1045);
+          DrawText5();
+          if(!document.getElementById('date').value){
+            var d = new Date();
+            var dateVal = d.getFullYear() + "年"+ (d.getMonth() + 1) +"月"+ d.getDate() +"日";
+          }else {
+            var dateVal = document.getElementById('date').value;
+          }
+          ctx.fillText(dateVal, 375, 1270);
+        });
+      }
+      function handleImage(e) {
+        var reader = new FileReader();
+        var img = '';
+        var src = '';
+        reader.onload = function(event) {
+          img = new Image();
+          img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+          };
+          img.src = event.target.result;
+          src = event.target.result;
+          canvas.classList.add('show');
+          DrawOverlay(img);
+          DrawText();
+          DynamicText(img);
+        };
+
+        reader.readAsDataURL(e.target.files[0]);
+      }
+      function convertToImage() {
+        window.open(canvas.toDataURL('png'));
+      }
+    </script>
+  </body>
+</html>
