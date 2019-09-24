@@ -6,17 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
-      @font-face {
-        /* 思源宋体 */
+      /* @font-face {
         font-family: 'SiYuan-ST';
-        src: url('./font/思源宋体_downcc/思源宋体_downcc/SourceHanSerifCN-Regular.otf');
+        src: url('./font/syst/SourceHanSerifCN-Regular.otf');
       }
 
       @font-face {
-        /* 思源黑体 */
         font-family: 'SiYuan-HT';
-        src: url('./font/14款思源黑体打包下载/SourceHanSansCN-思源黑体 简体中文版/SourceHanSansCN-Regular.otf');
-      }
+        src: url('./font/syht/SourceHanSansCN-Regular.otf');
+      } */
 
       body {
         background: #222;
@@ -172,14 +170,14 @@
       function DrawText() {
         ctx.fillStyle = '#fefd8b';
         ctx.textBaseline = 'middle';
-        ctx.font = "bold 48px 'SiYuan-ST'";
+        ctx.font = "bold 48px 'STZhongsong'";
         // ctx.fillText(text_title, 50, 50);
         ctx.textAlign="start";
       }
       function DrawText2() {
         ctx.fillStyle = '#fefd8b';
         ctx.textBaseline = 'middle';
-        ctx.font = "bold 90px 'SiYuan-ST'";
+        ctx.font = "bold 90px 'STZhongsong'";
         // ctx.fillText(text_title, 50, 50);
         ctx.textAlign="center";
       }
@@ -190,21 +188,21 @@
         grd.addColorStop(1,"#c4010f");
         ctx.fillStyle = grd;
         ctx.textBaseline = 'middle';
-        ctx.font = "bold 140px 'SiYuan-HT'";
+        ctx.font = "bold 140px 'STZhongsong'";
         // ctx.fillText(text_title, 50, 50);
         ctx.textAlign="center";
       }
       function DrawText4() {
         ctx.fillStyle = '#ffc867';
         ctx.textBaseline = 'middle';
-        ctx.font = "28px 'SiYuan-HT'";
+        ctx.font = "28px 'STZhongsong'";
         // ctx.fillText(text_title, 50, 50);
         ctx.textAlign="center";
       }
       function DrawText5() {
         ctx.fillStyle = '#f4f08d';
         ctx.textBaseline = 'middle';
-        ctx.font = "24px 'SiYuan-ST'";
+        ctx.font = "24px 'STHeiti'";
         // ctx.fillText(text_title, 50, 50);
         ctx.textAlign="center";
       }
