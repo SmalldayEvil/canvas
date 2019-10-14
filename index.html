@@ -160,7 +160,7 @@
           DynamicText(img);
           document.getElementById('btn').click();
         };
-        img.src = './news.jpg';
+        img.src = './news2.jpg';
       }
       function DrawOverlay(img) {
         ctx.drawImage(img, 0, 0);
@@ -172,7 +172,7 @@
         ctx.textBaseline = 'middle';
         ctx.font = "bold 48px 'STZhongsong'";
         // ctx.fillText(text_title, 50, 50);
-        ctx.textAlign="start";
+        ctx.textAlign="center";
       }
       function DrawText2() {
         ctx.fillStyle = '#fefd8b';
@@ -187,8 +187,8 @@
         grd.addColorStop(0.6,"#faf58a");
         grd.addColorStop(1,"#c4010f");
         ctx.fillStyle = grd;
+        ctx.font = "bold 160px 'NSimSun'";
         ctx.textBaseline = 'middle';
-        ctx.font = "bold 140px 'SimHei'";
         // ctx.fillText(text_title, 50, 50);
         ctx.textAlign="center";
       }
@@ -211,7 +211,7 @@
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           DrawOverlay(img);
           DrawText();
-          ctx.fillText(document.getElementById('name').value, 320, 560);
+          ctx.fillText('热烈祝贺  ' + document.getElementById('name').value, 375, 560);
           ctx.save();
           DrawText2();
           ctx.fillText(document.getElementById('username').value, 375, 660);
